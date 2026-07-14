@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOMStudy &ndash; Drag &amp; Drop Games</title>
+<style>
+  :root{--bg:#0a0805;--surface:#14110b;--surface2:#1d1812;--text:#f1f5f9;--muted:#94a3b8;--border:rgba(255,255,255,0.07);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;}
+
+  header{background:linear-gradient(160deg,#1a1305 0%,#2a1f08 50%,#0a0805 100%);border-bottom:1px solid var(--border);padding:44px 24px 36px;text-align:center;position:relative;overflow:hidden;}
+  header::after{content:'\1F9E0';position:absolute;font-size:360px;opacity:.025;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+  header h1{font-size:2.4rem;font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg,#f8fafc 30%,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;position:relative;}
+  header p{color:var(--muted);font-size:.9rem;position:relative;}
+  .pills{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;position:relative;}
+  .pill{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:.78rem;color:var(--muted);}
+  .pill b{color:#f59e0b;}
+
+  .search-wrap{max-width:460px;margin:22px auto 0;position:relative;}
+  .search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:10px 44px 10px 18px;color:var(--text);font-size:.85rem;outline:none;transition:.2s;}
+  .search-wrap input:focus{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245, 158, 11, .18);}
+  .search-wrap input::placeholder{color:var(--muted);}
+  .search-ico{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.85rem;pointer-events:none;}
+
+  main{max-width:1380px;margin:0 auto;padding:32px 16px 56px;}
+  .no-results{text-align:center;color:var(--muted);padding:60px 20px;font-size:.9rem;display:none;}
+
+  .section{margin-bottom:32px;}
+  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .section-icon{font-size:1.2rem;line-height:1;}
+  .section-title{font-size:.95rem;font-weight:700;color:var(--text);}
+  .section-badge{margin-left:auto;background:var(--surface2);border-radius:10px;padding:2px 8px;font-size:.68rem;color:var(--muted);}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:7px;}
+  a.card{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:11px 12px;text-decoration:none;color:var(--text);display:flex;align-items:flex-start;gap:9px;transition:.15s;}
+  a.card:hover{border-color:var(--c,#f59e0b);background:var(--surface2);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.5);}
+  .num{flex-shrink:0;background:var(--c,#f59e0b);color:#fff;border-radius:5px;padding:2px 5px;font-size:.6rem;font-weight:800;margin-top:1px;opacity:.9;letter-spacing:.3px;}
+  .ctitle{font-size:.75rem;line-height:1.45;color:var(--text);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BOOMStudy</h1>
+  <p>Drag &amp; Drop Study Games &nbsp;&middot;&nbsp; Biochemistry &amp; Metabolism</p>
+  <div class="pills">
+    <span class="pill"><b>242</b> games</span>
+    <span class="pill"><b>61</b> source bricks</span>
+    <span class="pill"><b>61</b> sections</span>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Search by topic or number\u2026" autocomplete="off">
+    <span class="search-ico">&#x2315;</span>
+  </div>
+</header>
+
+<main>
+<div class="no-results" id="noResults">No games match your search.</div>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Metabolic Overview I: General Reactions</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_01_catabolism_vs_anabolism.html" style="--c:#f59e0b"><span class="num">01</span><span class="ctitle">Catabolism vs. Anabolism</span></a>
+    <a class="card" href="boom_02_oxidation_vs_reduction.html" style="--c:#f59e0b"><span class="num">02</span><span class="ctitle">Oxidation vs. Reduction</span></a>
+    <a class="card" href="boom_03_fed_fasting_states.html" style="--c:#f59e0b"><span class="num">03</span><span class="ctitle">Fed, Fasting, and Starvation States</span></a>
+    <a class="card" href="boom_04_oxygen_and_atp.html" style="--c:#f59e0b"><span class="num">04</span><span class="ctitle">Oxygen and ATP Production</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">Metabolic Overview I: General Reactions (2 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_05_atp_generation_pathways.html" style="--c:#10b981"><span class="num">05</span><span class="ctitle">ATP Generation Pathways</span></a>
+    <a class="card" href="boom_06_causes_of_lactic_acidosis.html" style="--c:#10b981"><span class="num">06</span><span class="ctitle">Causes of Lactate Production</span></a>
+    <a class="card" href="boom_07_acute_malnutrition_states.html" style="--c:#10b981"><span class="num">07</span><span class="ctitle">Acute Malnutrition States</span></a>
+    <a class="card" href="boom_08_enzymes_of_ethanol_oxidation.html" style="--c:#10b981"><span class="num">08</span><span class="ctitle">Enzymes of Ethanol Oxidation</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Metabolic Overview II: OXPHOS</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_09_pathway_locale_io.html" style="--c:#8b5cf6"><span class="num">09</span><span class="ctitle">Central Metabolic Pathways: Locale, Substrate &amp; Product</span></a>
+    <a class="card" href="boom_10_mito_anatomy.html" style="--c:#8b5cf6"><span class="num">10</span><span class="ctitle">Anatomy of the Mitochondrion</span></a>
+    <a class="card" href="boom_11_etc_electron_flow.html" style="--c:#8b5cf6"><span class="num">11</span><span class="ctitle">Electron Transport Chain: Following the Electrons</span></a>
+    <a class="card" href="boom_12_pathway_regulation.html" style="--c:#8b5cf6"><span class="num">12</span><span class="ctitle">Regulation of Central Metabolic Pathways</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Metabolic Overview II: OXPHOS Uncouplers and Inhibitors</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_13_oxphos_inhibitors.html" style="--c:#06b6d4"><span class="num">13</span><span class="ctitle">OXPHOS Toxins: Site and Source</span></a>
+    <a class="card" href="boom_14_uncoupler_vs_inhibitor.html" style="--c:#06b6d4"><span class="num">14</span><span class="ctitle">Uncouplers vs. ETC Inhibitors</span></a>
+    <a class="card" href="boom_15_cn_poisoning_vs_cyanosis.html" style="--c:#06b6d4"><span class="num">15</span><span class="ctitle">Cyanide Poisoning vs. Cyanosis</span></a>
+    <a class="card" href="boom_16_natural_vs_unnatural_uncouplers.html" style="--c:#06b6d4"><span class="num">16</span><span class="ctitle">Natural vs. Unnatural Uncouplers</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Metabolic Overview III: O2 Delivery (1 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_17_rbc_structure_disorders.html" style="--c:#ec4899"><span class="num">17</span><span class="ctitle">RBC Structure and Disorders</span></a>
+    <a class="card" href="boom_18_cbc_values.html" style="--c:#ec4899"><span class="num">18</span><span class="ctitle">CBC Values and Anemia</span></a>
+    <a class="card" href="boom_19_oxygen_carrying_proteins.html" style="--c:#ec4899"><span class="num">19</span><span class="ctitle">Oxygen-Carrying Proteins</span></a>
+    <a class="card" href="boom_20_hb_affinity_modulators.html" style="--c:#ec4899"><span class="num">20</span><span class="ctitle">Modulators of Hemoglobin O2 Affinity</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">BOOM: Metabolic Overview III - O2 Delivery (2 of 2): Anemia, MCV Classification, and the B Vitamins</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_21_bvitamins_and_anemia.html" style="--c:#84cc16"><span class="num">21</span><span class="ctitle">B Vitamins and the Nutritional Anemias</span></a>
+    <a class="card" href="boom_22_cobalamin_absorption.html" style="--c:#84cc16"><span class="num">22</span><span class="ctitle">Cobalamin (B12) Absorption and Transport</span></a>
+    <a class="card" href="boom_23_one_carbon_players.html" style="--c:#84cc16"><span class="num">23</span><span class="ctitle">One-Carbon Metabolism: Cofactors and Reactions</span></a>
+    <a class="card" href="boom_24_deficiency_causes.html" style="--c:#84cc16"><span class="num">24</span><span class="ctitle">Predisposing Factors for B9 / B12 Deficiency</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Nitrogenous Base Metabolism</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_25_bases_and_nucleic_acids.html" style="--c:#f97316"><span class="num">25</span><span class="ctitle">The Five Nitrogenous Bases</span></a>
+    <a class="card" href="boom_26_synthesis_enzymes.html" style="--c:#f97316"><span class="num">26</span><span class="ctitle">Enzymes of Nucleotide Synthesis</span></a>
+    <a class="card" href="boom_27_disorders.html" style="--c:#f97316"><span class="num">27</span><span class="ctitle">Disorders of Nitrogenous Base Metabolism</span></a>
+    <a class="card" href="boom_28_drugs.html" style="--c:#f97316"><span class="num">28</span><span class="ctitle">Drugs Targeting Nucleotide Metabolism</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">DNA Damage and DNA Repair Mechanism</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_29_damage_sources.html" style="--c:#3b82f6"><span class="num">29</span><span class="ctitle">Sources of DNA Damage</span></a>
+    <a class="card" href="boom_30_repair_pathways.html" style="--c:#3b82f6"><span class="num">30</span><span class="ctitle">DNA Repair Pathways</span></a>
+    <a class="card" href="boom_31_repair_deficiency_syndromes.html" style="--c:#3b82f6"><span class="num">31</span><span class="ctitle">DNA Repair Deficiency Syndromes</span></a>
+    <a class="card" href="boom_32_damaging_agents.html" style="--c:#3b82f6"><span class="num">32</span><span class="ctitle">DNA-Damaging Agents</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">DNA Structure</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_33_nucleotide_building_blocks.html" style="--c:#f59e0b"><span class="num">33</span><span class="ctitle">Nucleotide Building Blocks</span></a>
+    <a class="card" href="boom_34_molecular_features_dna.html" style="--c:#f59e0b"><span class="num">34</span><span class="ctitle">Molecular Features of the Double Helix</span></a>
+    <a class="card" href="boom_35_dna_packaging_levels.html" style="--c:#f59e0b"><span class="num">35</span><span class="ctitle">Levels of DNA Packaging</span></a>
+    <a class="card" href="boom_36_chromatin_states_regulation.html" style="--c:#f59e0b"><span class="num">36</span><span class="ctitle">Chromatin States and Epigenetic Control</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">DNA Replication</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_37_replication_enzymes.html" style="--c:#10b981"><span class="num">37</span><span class="ctitle">Enzymes and Proteins of the Replication Fork</span></a>
+    <a class="card" href="boom_38_elongation_polymerases.html" style="--c:#10b981"><span class="num">38</span><span class="ctitle">Eukaryotic DNA Polymerases and the Sliding Clamp</span></a>
+    <a class="card" href="boom_39_fork_structures.html" style="--c:#10b981"><span class="num">39</span><span class="ctitle">Structures and Landmarks of Replication</span></a>
+    <a class="card" href="boom_40_tension_and_accuracy.html" style="--c:#10b981"><span class="num">40</span><span class="ctitle">Relieving Tension and Ensuring Accuracy</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">The Central Dogma: DNA to RNA to Proteins</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_41_gene_regulatory_elements.html" style="--c:#8b5cf6"><span class="num">41</span><span class="ctitle">Gene Regulatory Elements</span></a>
+    <a class="card" href="boom_42_mrna_anatomy.html" style="--c:#8b5cf6"><span class="num">42</span><span class="ctitle">Anatomy of a Mature mRNA</span></a>
+    <a class="card" href="boom_43_splicing_components.html" style="--c:#8b5cf6"><span class="num">43</span><span class="ctitle">Splicing and the Spliceosome</span></a>
+    <a class="card" href="boom_44_dogma_enzymes.html" style="--c:#8b5cf6"><span class="num">44</span><span class="ctitle">Central-Dogma Enzymes and Exceptions</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">DNA Point Mutations</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_45_point_mutation_types.html" style="--c:#06b6d4"><span class="num">45</span><span class="ctitle">Point Mutations by Effect</span></a>
+    <a class="card" href="boom_46_protein_level_effects.html" style="--c:#06b6d4"><span class="num">46</span><span class="ctitle">Protein-Level Mutation Effects</span></a>
+    <a class="card" href="boom_47_coding_reading_frame_terms.html" style="--c:#06b6d4"><span class="num">47</span><span class="ctitle">Coding Region and Reading-Frame Terms</span></a>
+    <a class="card" href="boom_48_mutation_origin_indels.html" style="--c:#06b6d4"><span class="num">48</span><span class="ctitle">Mutation Origin, Indels, and Examples</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Proteins, Enzymatic Machines and Introduction to Protein-based Disorders I</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_49_amino_acid_classes.html" style="--c:#ec4899"><span class="num">49</span><span class="ctitle">Classifying the Proteogenic Amino Acids</span></a>
+    <a class="card" href="boom_50_protein_structure_levels.html" style="--c:#ec4899"><span class="num">50</span><span class="ctitle">Four Levels of Protein Structure</span></a>
+    <a class="card" href="boom_51_post_translational_mods.html" style="--c:#ec4899"><span class="num">51</span><span class="ctitle">Post-Translational Modifications</span></a>
+    <a class="card" href="boom_52_helpers_and_turnover.html" style="--c:#ec4899"><span class="num">52</span><span class="ctitle">Protein Helpers and Cellular Turnover</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">Proteins, Enzymatic Machines and Introduction to Protein-based Disorders I (2 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_53_molecular_defect.html" style="--c:#84cc16"><span class="num">53</span><span class="ctitle">The Molecular Defect</span></a>
+    <a class="card" href="boom_54_g6pd_hemolysis.html" style="--c:#84cc16"><span class="num">54</span><span class="ctitle">G6PD Deficiency and Hemolysis</span></a>
+    <a class="card" href="boom_55_look_alike_disorders.html" style="--c:#84cc16"><span class="num">55</span><span class="ctitle">Distinguishing Look-Alike Disorders</span></a>
+    <a class="card" href="boom_56_cofactors_and_vitamins.html" style="--c:#84cc16"><span class="num">56</span><span class="ctitle">Cofactors and Vitamins in Protein Disorders</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Proteins, Enzymatic Machines and Introduction to Protein-based Disorders II</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_57_six_enzyme_classes.html" style="--c:#f97316"><span class="num">57</span><span class="ctitle">The Six Enzyme Classes</span></a>
+    <a class="card" href="boom_58_phosphate_handling_enzymes.html" style="--c:#f97316"><span class="num">58</span><span class="ctitle">Phosphate-Handling Enzymes</span></a>
+    <a class="card" href="boom_59_enzyme_biomarkers.html" style="--c:#f97316"><span class="num">59</span><span class="ctitle">Enzymes as Disease Biomarkers</span></a>
+    <a class="card" href="boom_60_enzyme_affinity_kinetics.html" style="--c:#f97316"><span class="num">60</span><span class="ctitle">Km, Affinity, and Kinetic Behavior</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">Proteins, Enzymatic Machines and Introduction to Protein-based Disorders II</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_61_glucose_phosphorylating_kinetics.html" style="--c:#3b82f6"><span class="num">61</span><span class="ctitle">Hexokinase vs. Glucokinase Kinetics</span></a>
+    <a class="card" href="boom_62_enzyme_inhibitor_types.html" style="--c:#3b82f6"><span class="num">62</span><span class="ctitle">Classifying Enzyme Inhibitors</span></a>
+    <a class="card" href="boom_63_detoxification_enzymes.html" style="--c:#3b82f6"><span class="num">63</span><span class="ctitle">Phase I and Phase II Detoxification Enzymes</span></a>
+    <a class="card" href="boom_64_acetaminophen_toxicity.html" style="--c:#3b82f6"><span class="num">64</span><span class="ctitle">Acetaminophen Toxicity Pathway</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Biotechniques: Protein Detection</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_65_detection_techniques.html" style="--c:#f59e0b"><span class="num">65</span><span class="ctitle">Protein Detection Techniques Compared</span></a>
+    <a class="card" href="boom_66_scd_gene_to_cell.html" style="--c:#f59e0b"><span class="num">66</span><span class="ctitle">Sickle Cell Disease: Gene to Cell</span></a>
+    <a class="card" href="boom_67_choosing_the_assay.html" style="--c:#f59e0b"><span class="num">67</span><span class="ctitle">Choosing the Right Assay</span></a>
+    <a class="card" href="boom_68_flow_cytometry_signals.html" style="--c:#f59e0b"><span class="num">68</span><span class="ctitle">Flow Cytometry Signals</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">Carbohydrates and Carbohydrate Metabolism Overview I</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_69_dietary_sugars.html" style="--c:#10b981"><span class="num">69</span><span class="ctitle">Common Dietary Carbohydrates</span></a>
+    <a class="card" href="boom_70_carb_terminology.html" style="--c:#10b981"><span class="num">70</span><span class="ctitle">Carbohydrate Structural Terms</span></a>
+    <a class="card" href="boom_71_glut_transporters.html" style="--c:#10b981"><span class="num">71</span><span class="ctitle">Glucose Transporters (GLUTs)</span></a>
+    <a class="card" href="boom_72_glucose_fates.html" style="--c:#10b981"><span class="num">72</span><span class="ctitle">Metabolic Fates of Glucose</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Carbohydrates and Carbohydrate Metabolism Overview I: Glycogen, Lactose Intolerance, and Galactosemia</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_73_galactose_enzymes.html" style="--c:#8b5cf6"><span class="num">73</span><span class="ctitle">Enzymes of Galactose Metabolism</span></a>
+    <a class="card" href="boom_74_carb_disorders.html" style="--c:#8b5cf6"><span class="num">74</span><span class="ctitle">Carbohydrate Metabolism Disorders</span></a>
+    <a class="card" href="boom_75_glycogen_structure.html" style="--c:#8b5cf6"><span class="num">75</span><span class="ctitle">Glycogen Structure and Dynamics</span></a>
+    <a class="card" href="boom_76_lactose_intolerance.html" style="--c:#8b5cf6"><span class="num">76</span><span class="ctitle">Lactose Intolerance</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Carbohydrates and Carbohydrate Metabolism Overview II</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_77_glycolytic_control_points.html" style="--c:#06b6d4"><span class="num">77</span><span class="ctitle">Glycolytic Control Point Enzymes</span></a>
+    <a class="card" href="boom_78_gluconeogenesis_bypass.html" style="--c:#06b6d4"><span class="num">78</span><span class="ctitle">Gluconeogenesis Bypass Enzymes</span></a>
+    <a class="card" href="boom_79_pdh_coenzymes.html" style="--c:#06b6d4"><span class="num">79</span><span class="ctitle">PDH Complex Coenzymes and Their Sources</span></a>
+    <a class="card" href="boom_80_fates_of_pyruvate.html" style="--c:#06b6d4"><span class="num">80</span><span class="ctitle">Fates of Pyruvate by Tissue and Condition</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Carbohydrates and Carbohydrate Metabolism Overview II: Fructose, HFCS, the Polyol Pathway, and Fructose Disorders</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_81_sugar_metabolism_enzymes.html" style="--c:#ec4899"><span class="num">81</span><span class="ctitle">Enzymes of Sugar Metabolism</span></a>
+    <a class="card" href="boom_82_polyol_pathway_damage.html" style="--c:#ec4899"><span class="num">82</span><span class="ctitle">The Polyol Pathway and Diabetic Damage</span></a>
+    <a class="card" href="boom_83_fructose_galactose_disorders.html" style="--c:#ec4899"><span class="num">83</span><span class="ctitle">Disorders of Fructose and Galactose Metabolism</span></a>
+    <a class="card" href="boom_84_hfcs_and_fructose_physiology.html" style="--c:#ec4899"><span class="num">84</span><span class="ctitle">High Fructose Corn Syrup and Fructose Physiology</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">Lipids and Lipid Metabolism Introduction</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_85_plasma_lipoproteins.html" style="--c:#84cc16"><span class="num">85</span><span class="ctitle">Plasma Lipoproteins</span></a>
+    <a class="card" href="boom_86_apolipoproteins.html" style="--c:#84cc16"><span class="num">86</span><span class="ctitle">Apolipoproteins</span></a>
+    <a class="card" href="boom_87_lipid_enzymes.html" style="--c:#84cc16"><span class="num">87</span><span class="ctitle">Enzymes of Lipid Digestion and Transport</span></a>
+    <a class="card" href="boom_88_fa_synthesis_degradation.html" style="--c:#84cc16"><span class="num">88</span><span class="ctitle">Fatty Acid Synthesis and Degradation</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Lipids and Lipid Metabolism: Cholesterol Synthesis and Ketone Bodies</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_89_cholesterol_synthesis.html" style="--c:#f97316"><span class="num">89</span><span class="ctitle">Cholesterol Synthesis Pathway</span></a>
+    <a class="card" href="boom_90_statin_effects.html" style="--c:#f97316"><span class="num">90</span><span class="ctitle">Statins and HMG-CoA Reductase</span></a>
+    <a class="card" href="boom_91_ketone_enzymes.html" style="--c:#f97316"><span class="num">91</span><span class="ctitle">Enzymes of Ketone Body Metabolism</span></a>
+    <a class="card" href="boom_92_ketosis_states.html" style="--c:#f97316"><span class="num">92</span><span class="ctitle">Differentiating Ketotic States</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">BOOM: Lipids and Lipid Metabolism Introduction (3 of 3) - Arachidonic Acid and Eicosanoids</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_93_aa_pathway_enzymes.html" style="--c:#3b82f6"><span class="num">93</span><span class="ctitle">Enzymes of the Arachidonic Acid Pathway</span></a>
+    <a class="card" href="boom_94_pathway_lipids.html" style="--c:#3b82f6"><span class="num">94</span><span class="ctitle">Lipid Molecules of the Pathway</span></a>
+    <a class="card" href="boom_95_aa_pathway_drugs.html" style="--c:#3b82f6"><span class="num">95</span><span class="ctitle">Agents That Modulate the Pathway</span></a>
+    <a class="card" href="boom_96_eicosanoid_mediators.html" style="--c:#3b82f6"><span class="num">96</span><span class="ctitle">Eicosanoid Mediators and Their Actions</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Overview of Cell Signaling</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_97_signaling_paradigms.html" style="--c:#f59e0b"><span class="num">97</span><span class="ctitle">Five Cell Signaling Paradigms</span></a>
+    <a class="card" href="boom_98_hormone_classes.html" style="--c:#f59e0b"><span class="num">98</span><span class="ctitle">Hormone Classes and Their Properties</span></a>
+    <a class="card" href="boom_99_receptor_pathways.html" style="--c:#f59e0b"><span class="num">99</span><span class="ctitle">Signaling Receptor and Pathway Types</span></a>
+    <a class="card" href="boom_100_second_messengers.html" style="--c:#f59e0b"><span class="num">100</span><span class="ctitle">Second Messengers</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">Overview of Cell Signaling (2 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_101_receptor_pathways.html" style="--c:#10b981"><span class="num">101</span><span class="ctitle">Receptor Signaling Pathways</span></a>
+    <a class="card" href="boom_102_signaling_diseases.html" style="--c:#10b981"><span class="num">102</span><span class="ctitle">When Signaling Goes Awry</span></a>
+    <a class="card" href="boom_103_adhesion_receptors.html" style="--c:#10b981"><span class="num">103</span><span class="ctitle">Cell Surface Adhesion Receptors</span></a>
+    <a class="card" href="boom_104_nfkb_tnf.html" style="--c:#10b981"><span class="num">104</span><span class="ctitle">NF-kB / TNF-alpha Cascade and Therapeutics</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Cell Signaling in Context: Fed and Fasting Metabolic State</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_105_metabolic_hormones.html" style="--c:#8b5cf6"><span class="num">105</span><span class="ctitle">Metabolic Hormones</span></a>
+    <a class="card" href="boom_106_muscle_glycogen_regulators.html" style="--c:#8b5cf6"><span class="num">106</span><span class="ctitle">Regulators of Muscle Glycogen Phosphorylase</span></a>
+    <a class="card" href="boom_107_organ_fuel_sources.html" style="--c:#8b5cf6"><span class="num">107</span><span class="ctitle">Organ Fuel Sources Across Metabolic States</span></a>
+    <a class="card" href="boom_108_fuel_metabolism_enzymes.html" style="--c:#8b5cf6"><span class="num">108</span><span class="ctitle">Key Enzymes of Fuel Metabolism</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Cell Signaling in Context: Fed and Fasting Metabolic State (2 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_109_insulin_secretion_cascade.html" style="--c:#06b6d4"><span class="num">109</span><span class="ctitle">Glucose-Stimulated Insulin Secretion</span></a>
+    <a class="card" href="boom_110_insulin_processing_forms.html" style="--c:#06b6d4"><span class="num">110</span><span class="ctitle">Insulin Processing and Physical Forms</span></a>
+    <a class="card" href="boom_111_ampk_energy_sensing.html" style="--c:#06b6d4"><span class="num">111</span><span class="ctitle">AMPK: The Cellular Energy Sensor</span></a>
+    <a class="card" href="boom_112_refeeding_syndrome.html" style="--c:#06b6d4"><span class="num">112</span><span class="ctitle">Re-feeding Syndrome Micronutrients</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Basic Nutritional Requirements for Metabolism (1 of 3)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_113_dri_terminology.html" style="--c:#ec4899"><span class="num">113</span><span class="ctitle">Dietary Reference Intake Terms</span></a>
+    <a class="card" href="boom_114_water_soluble_deficiencies.html" style="--c:#ec4899"><span class="num">114</span><span class="ctitle">Water-Soluble Vitamin Deficiencies</span></a>
+    <a class="card" href="boom_115_glucose_metabolism_cofactors.html" style="--c:#ec4899"><span class="num">115</span><span class="ctitle">Vitamin Cofactors in Glucose Metabolism</span></a>
+    <a class="card" href="boom_116_amino_acid_cofactors.html" style="--c:#ec4899"><span class="num">116</span><span class="ctitle">Cofactors in Amino Acid Metabolism</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">Fat-Soluble Vitamins (A, D, E, K)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_117_four_fat_soluble_vitamins.html" style="--c:#84cc16"><span class="num">117</span><span class="ctitle">The Four Fat-Soluble Vitamins</span></a>
+    <a class="card" href="boom_118_vitamin_a_forms.html" style="--c:#84cc16"><span class="num">118</span><span class="ctitle">Forms of Vitamin A and Retinoid Therapeutics</span></a>
+    <a class="card" href="boom_119_vitamin_d_activation.html" style="--c:#84cc16"><span class="num">119</span><span class="ctitle">Vitamin D Activation Pathway</span></a>
+    <a class="card" href="boom_120_deficiency_toxicity_states.html" style="--c:#84cc16"><span class="num">120</span><span class="ctitle">Deficiency and Toxicity States</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Basic Nutritional Requirements for Metabolism: Select Minerals</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_121_select_minerals_overview.html" style="--c:#f97316"><span class="num">121</span><span class="ctitle">Select Minerals at a Glance</span></a>
+    <a class="card" href="boom_122_copper_dependent_enzymes.html" style="--c:#f97316"><span class="num">122</span><span class="ctitle">Copper-Dependent Enzymes</span></a>
+    <a class="card" href="boom_123_calcium_regulation.html" style="--c:#f97316"><span class="num">123</span><span class="ctitle">What Moves Free Calcium</span></a>
+    <a class="card" href="boom_124_trace_mineral_disorders.html" style="--c:#f97316"><span class="num">124</span><span class="ctitle">Trace-Mineral Disorders</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">Amino Acid Metabolism I: Nitrogen Balance and Urea Cycle</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_125_nitrogen_enzymes.html" style="--c:#3b82f6"><span class="num">125</span><span class="ctitle">Nitrogen-Handling Enzymes</span></a>
+    <a class="card" href="boom_126_protein_digestion.html" style="--c:#3b82f6"><span class="num">126</span><span class="ctitle">Protein Digestion in the Gut</span></a>
+    <a class="card" href="boom_127_ammonia_sources.html" style="--c:#3b82f6"><span class="num">127</span><span class="ctitle">Sources of Ammonia in the Body</span></a>
+    <a class="card" href="boom_128_ammonia_neurotoxicity.html" style="--c:#3b82f6"><span class="num">128</span><span class="ctitle">Ammonia Neurotoxicity and Hepatic Encephalopathy</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Amino Acid Metabolism I: Nitrogen Balance and Urea Cycle</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_129_urea_cycle_enzymes.html" style="--c:#f59e0b"><span class="num">129</span><span class="ctitle">Enzymes of the Urea Cycle</span></a>
+    <a class="card" href="boom_130_urea_cycle_disorders.html" style="--c:#f59e0b"><span class="num">130</span><span class="ctitle">Urea Cycle Disorders</span></a>
+    <a class="card" href="boom_131_interorgan_nitrogen_cycles.html" style="--c:#f59e0b"><span class="num">131</span><span class="ctitle">Interorgan Nitrogen and Carbon Cycles</span></a>
+    <a class="card" href="boom_132_hyperammonemia_management.html" style="--c:#f59e0b"><span class="num">132</span><span class="ctitle">Management of Hyperammonemia</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">Inborn Errors of Amino Acid Metabolism</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_133_enzyme_deficiencies.html" style="--c:#10b981"><span class="num">133</span><span class="ctitle">Enzyme Deficiencies</span></a>
+    <a class="card" href="boom_134_vitamin_rescue.html" style="--c:#10b981"><span class="num">134</span><span class="ctitle">Vitamin Supplementation Strategies</span></a>
+    <a class="card" href="boom_135_odors_and_markers.html" style="--c:#10b981"><span class="num">135</span><span class="ctitle">Diagnostic Odors and Markers</span></a>
+    <a class="card" href="boom_136_transport_and_organic_acidemias.html" style="--c:#10b981"><span class="num">136</span><span class="ctitle">Transporter Defects and Organic Acidemias</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Porphyrins and Iron Homeostasis (1 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_137_heme_synthesis_enzymes.html" style="--c:#8b5cf6"><span class="num">137</span><span class="ctitle">Heme Synthesis Pathway</span></a>
+    <a class="card" href="boom_138_heme_degradation.html" style="--c:#8b5cf6"><span class="num">138</span><span class="ctitle">Heme Degradation to Bilirubin</span></a>
+    <a class="card" href="boom_139_hereditary_hyperbilirubinemias.html" style="--c:#8b5cf6"><span class="num">139</span><span class="ctitle">Hereditary Hyperbilirubinemias</span></a>
+    <a class="card" href="boom_140_alas_regulation.html" style="--c:#8b5cf6"><span class="num">140</span><span class="ctitle">Regulators and Clinical Correlations</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Porphyrins and Iron Homeostasis (2 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_141_iron_handling_proteins.html" style="--c:#06b6d4"><span class="num">141</span><span class="ctitle">Iron-Handling Proteins</span></a>
+    <a class="card" href="boom_142_heme_synthesis_enzymes.html" style="--c:#06b6d4"><span class="num">142</span><span class="ctitle">Heme Synthesis Pathway Enzymes</span></a>
+    <a class="card" href="boom_143_iron_studies.html" style="--c:#06b6d4"><span class="num">143</span><span class="ctitle">Reading Iron Studies</span></a>
+    <a class="card" href="boom_144_iron_homeostasis_disorders.html" style="--c:#06b6d4"><span class="num">144</span><span class="ctitle">Disorders of Iron Homeostasis</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Inborn Errors of Carbohydrate Metabolism</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_145_glycogen_storage_diseases.html" style="--c:#ec4899"><span class="num">145</span><span class="ctitle">Glycogen Storage Diseases</span></a>
+    <a class="card" href="boom_146_rbc_and_hemoglobin_disorders.html" style="--c:#ec4899"><span class="num">146</span><span class="ctitle">Red Cell and Hemoglobin Disorders</span></a>
+    <a class="card" href="boom_147_gluconeogenesis_and_pyruvate.html" style="--c:#ec4899"><span class="num">147</span><span class="ctitle">Gluconeogenesis and Pyruvate Metabolism Errors</span></a>
+    <a class="card" href="boom_148_treatment_strategies.html" style="--c:#ec4899"><span class="num">148</span><span class="ctitle">Treatment Strategies</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">Dyslipidemias, Lipid Storage Disorders, and other defects in Lipid Metabolism</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_149_fredrickson_types.html" style="--c:#84cc16"><span class="num">149</span><span class="ctitle">Fredrickson Primary Dyslipidemias</span></a>
+    <a class="card" href="boom_150_lipoprotein_functions.html" style="--c:#84cc16"><span class="num">150</span><span class="ctitle">Lipoprotein Transport Roles</span></a>
+    <a class="card" href="boom_151_physical_findings.html" style="--c:#84cc16"><span class="num">151</span><span class="ctitle">Lipid Deposits and Physical Findings</span></a>
+    <a class="card" href="boom_152_molecular_players.html" style="--c:#84cc16"><span class="num">152</span><span class="ctitle">Molecular Players in Lipid Handling</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Dyslipidemias, Lipid Storage Disorders, and other defects in Lipid Metabolism (2 of 2)</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_153_sphingolipidoses_biochem.html" style="--c:#f97316"><span class="num">153</span><span class="ctitle">Sphingolipidoses: Enzyme and Substrate</span></a>
+    <a class="card" href="boom_154_storage_disease_course.html" style="--c:#f97316"><span class="num">154</span><span class="ctitle">Storage Diseases: Course and Prognosis</span></a>
+    <a class="card" href="boom_155_peroxisome_players.html" style="--c:#f97316"><span class="num">155</span><span class="ctitle">Peroxisome Biology: Molecular Players</span></a>
+    <a class="card" href="boom_156_peroxisome_vs_lysosome.html" style="--c:#f97316"><span class="num">156</span><span class="ctitle">Peroxisomal vs Lysosomal Disease</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">Chromosomes</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_157_chromatin_packaging.html" style="--c:#3b82f6"><span class="num">157</span><span class="ctitle">Chromosome Anatomy and Packaging</span></a>
+    <a class="card" href="boom_158_cell_division.html" style="--c:#3b82f6"><span class="num">158</span><span class="ctitle">Mitosis, Meiosis, and Fertilization</span></a>
+    <a class="card" href="boom_159_structural_variants.html" style="--c:#3b82f6"><span class="num">159</span><span class="ctitle">Structural Chromosome Variants</span></a>
+    <a class="card" href="boom_160_cytogenetic_notation.html" style="--c:#3b82f6"><span class="num">160</span><span class="ctitle">Cytogenetic Notation Decoder</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Numerical &amp; Structural Chromosomal Alterations (1/3) - Variants in Chromosome Number</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_161_aneuploidy_syndromes.html" style="--c:#f59e0b"><span class="num">161</span><span class="ctitle">Aneuploidy Syndromes at a Glance</span></a>
+    <a class="card" href="boom_162_mechanisms_aneuploidy.html" style="--c:#f59e0b"><span class="num">162</span><span class="ctitle">How Aneuploidy Arises</span></a>
+    <a class="card" href="boom_163_down_associations.html" style="--c:#f59e0b"><span class="num">163</span><span class="ctitle">Down Syndrome Clinical Associations</span></a>
+    <a class="card" href="boom_164_ploidy_terminology.html" style="--c:#f59e0b"><span class="num">164</span><span class="ctitle">Ploidy &amp; Aneuploidy Terminology</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">Sex Chromosome Aneuploidy</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_165_aneuploidy_syndromes.html" style="--c:#10b981"><span class="num">165</span><span class="ctitle">Sex Chromosome Aneuploidy Syndromes</span></a>
+    <a class="card" href="boom_166_nondisjunction_outcomes.html" style="--c:#10b981"><span class="num">166</span><span class="ctitle">Nondisjunction and Gamete Outcomes</span></a>
+    <a class="card" href="boom_167_sex_chromosome_genetics.html" style="--c:#10b981"><span class="num">167</span><span class="ctitle">Sex Chromosome Genetics Essentials</span></a>
+    <a class="card" href="boom_168_fertility_and_complications.html" style="--c:#10b981"><span class="num">168</span><span class="ctitle">Fertility and Complications by Syndrome</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Numerical and Structural Chromosomal Alterations (2/3) - Subchromosomal Deletion Syndromes</span>
+    <span class="section-badge">3 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_169_karyotype_to_syndrome.html" style="--c:#8b5cf6"><span class="num">169</span><span class="ctitle">Karyotype to Syndrome</span></a>
+    <a class="card" href="boom_170_structural_variant_types.html" style="--c:#8b5cf6"><span class="num">170</span><span class="ctitle">Types of Subchromosomal Structural Variants</span></a>
+    <a class="card" href="boom_171_deletion_syndrome_profiles.html" style="--c:#8b5cf6"><span class="num">171</span><span class="ctitle">Deletion Syndrome Clinical Profiles</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Mosaicism</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_172_types_of_mosaicism.html" style="--c:#06b6d4"><span class="num">172</span><span class="ctitle">Types of Genetic Mosaicism</span></a>
+    <a class="card" href="boom_173_x_inactivation.html" style="--c:#06b6d4"><span class="num">173</span><span class="ctitle">X Chromosome Inactivation</span></a>
+    <a class="card" href="boom_174_mosaic_conditions.html" style="--c:#06b6d4"><span class="num">174</span><span class="ctitle">Mosaic Clinical Conditions</span></a>
+    <a class="card" href="boom_175_recurrence_risk_counseling.html" style="--c:#06b6d4"><span class="num">175</span><span class="ctitle">Recurrence Risk and Counseling</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Molecular Biology Techniques (1 of 3) - Cytogenetics</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_176_technique_overview.html" style="--c:#ec4899"><span class="num">176</span><span class="ctitle">Four Cytogenetic Techniques Compared</span></a>
+    <a class="card" href="boom_177_reading_signals.html" style="--c:#ec4899"><span class="num">177</span><span class="ctitle">Reading the Signals</span></a>
+    <a class="card" href="boom_178_acgh_dosage.html" style="--c:#ec4899"><span class="num">178</span><span class="ctitle">Array CGH Dosage Scores</span></a>
+    <a class="card" href="boom_179_match_disorder.html" style="--c:#ec4899"><span class="num">179</span><span class="ctitle">Match the Genetic Disorder</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">Pedigrees and Patterns of Monogenic Inheritance</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_180_inheritance_patterns.html" style="--c:#84cc16"><span class="num">180</span><span class="ctitle">Patterns of Monogenic Inheritance</span></a>
+    <a class="card" href="boom_181_genetic_terminology.html" style="--c:#84cc16"><span class="num">181</span><span class="ctitle">Core Genetics Terminology</span></a>
+    <a class="card" href="boom_182_zygosity_states.html" style="--c:#84cc16"><span class="num">182</span><span class="ctitle">Zygosity and Carrier States</span></a>
+    <a class="card" href="boom_183_pedigree_symbols.html" style="--c:#84cc16"><span class="num">183</span><span class="ctitle">Reading a Pedigree</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Genotype-Phenotype Correlation</span>
+    <span class="section-badge">3 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_184_mechanisms.html" style="--c:#f97316"><span class="num">184</span><span class="ctitle">Mechanisms That Alter Genotype-Phenotype Correlation</span></a>
+    <a class="card" href="boom_185_disease_exemplars.html" style="--c:#f97316"><span class="num">185</span><span class="ctitle">Disease Exemplars</span></a>
+    <a class="card" href="boom_186_foundations.html" style="--c:#f97316"><span class="num">186</span><span class="ctitle">Foundational Vocabulary</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">Molecular Biology Techniques (2 of 3): DNA Analysis</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_187_dna_analysis_techniques.html" style="--c:#3b82f6"><span class="num">187</span><span class="ctitle">DNA Analysis Techniques</span></a>
+    <a class="card" href="boom_188_pcr_components.html" style="--c:#3b82f6"><span class="num">188</span><span class="ctitle">PCR Components (Copy-Machine Analogy)</span></a>
+    <a class="card" href="boom_189_sickle_cell_rflp.html" style="--c:#3b82f6"><span class="num">189</span><span class="ctitle">Sickle Cell RFLP Genotyping</span></a>
+    <a class="card" href="boom_190_sequencing_pioneers.html" style="--c:#3b82f6"><span class="num">190</span><span class="ctitle">Origins of the Techniques</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Repeat Expansion Disorders</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_191_match_the_repeat_disorder.html" style="--c:#f59e0b"><span class="num">191</span><span class="ctitle">Match the Repeat Expansion Disorder</span></a>
+    <a class="card" href="boom_192_region_of_the_expansion.html" style="--c:#f59e0b"><span class="num">192</span><span class="ctitle">Where the Repeat Sits</span></a>
+    <a class="card" href="boom_193_clinical_features.html" style="--c:#f59e0b"><span class="num">193</span><span class="ctitle">Recognize the Clinical Picture</span></a>
+    <a class="card" href="boom_194_repeat_biology_concepts.html" style="--c:#f59e0b"><span class="num">194</span><span class="ctitle">Core Concepts of Repeat Expansion</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">Mitochondrial Diseases</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_195_mito_syndromes.html" style="--c:#10b981"><span class="num">195</span><span class="ctitle">Mitochondrial Disease Syndromes</span></a>
+    <a class="card" href="boom_196_mtdna_vs_nuclear.html" style="--c:#10b981"><span class="num">196</span><span class="ctitle">Mitochondrial DNA vs Nuclear DNA</span></a>
+    <a class="card" href="boom_197_mito_genetics_concepts.html" style="--c:#10b981"><span class="num">197</span><span class="ctitle">Concepts of Mitochondrial Genetics</span></a>
+    <a class="card" href="boom_198_organ_involvement.html" style="--c:#10b981"><span class="num">198</span><span class="ctitle">Organ Systems in Mitochondrial Disease</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Genomic Imprinting Disorders</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_199_imprinting_disorder_genetics.html" style="--c:#8b5cf6"><span class="num">199</span><span class="ctitle">Imprinting Disorders: Genetic Basis</span></a>
+    <a class="card" href="boom_200_imprinting_clinical_features.html" style="--c:#8b5cf6"><span class="num">200</span><span class="ctitle">Imprinting Disorders: Clinical Picture</span></a>
+    <a class="card" href="boom_201_imprinting_diagnostics.html" style="--c:#8b5cf6"><span class="num">201</span><span class="ctitle">Diagnosing Imprinting Disorders</span></a>
+    <a class="card" href="boom_202_imprinting_molecular_basis.html" style="--c:#8b5cf6"><span class="num">202</span><span class="ctitle">Molecular Basis of Imprinting</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Multifactorial Disorders</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_203_factors_complex_disease.html" style="--c:#06b6d4"><span class="num">203</span><span class="ctitle">Factors in Complex Disease</span></a>
+    <a class="card" href="boom_204_threshold_model_risk.html" style="--c:#06b6d4"><span class="num">204</span><span class="ctitle">Risk Concepts in the Threshold Model</span></a>
+    <a class="card" href="boom_205_study_methods.html" style="--c:#06b6d4"><span class="num">205</span><span class="ctitle">Comparing Study Methods</span></a>
+    <a class="card" href="boom_206_genes_and_pharmacogenomics.html" style="--c:#06b6d4"><span class="num">206</span><span class="ctitle">Genes, Drugs, and Multifactorial Traits</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Population Genetics</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_207_hardy_weinberg_terms.html" style="--c:#ec4899"><span class="num">207</span><span class="ctitle">Hardy-Weinberg Equation Terms</span></a>
+    <a class="card" href="boom_208_forces_altering_frequencies.html" style="--c:#ec4899"><span class="num">208</span><span class="ctitle">Forces That Change Allele Frequencies</span></a>
+    <a class="card" href="boom_209_population_disease_patterns.html" style="--c:#ec4899"><span class="num">209</span><span class="ctitle">Genetic Diseases and Population Patterns</span></a>
+    <a class="card" href="boom_210_hardy_weinberg_assumptions.html" style="--c:#ec4899"><span class="num">210</span><span class="ctitle">Hardy-Weinberg Assumptions and Their Violations</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧪</span>
+    <span class="section-title">Molecular Biology Techniques (1 of 3) - Cytogenetics</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_211_techniques_compared.html" style="--c:#84cc16"><span class="num">211</span><span class="ctitle">Cytogenetic Techniques at a Glance</span></a>
+    <a class="card" href="boom_212_how_it_works.html" style="--c:#84cc16"><span class="num">212</span><span class="ctitle">How Each Technique Works</span></a>
+    <a class="card" href="boom_213_signals_interpreted.html" style="--c:#84cc16"><span class="num">213</span><span class="ctitle">Bands, Signals, and Ratios</span></a>
+    <a class="card" href="boom_214_syndrome_to_test.html" style="--c:#84cc16"><span class="num">214</span><span class="ctitle">Match Syndrome to Lesion and Best Test</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💊</span>
+    <span class="section-title">Molecular Biology Techniques (2 of 3), DNA analysis</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_215_dna_analysis_techniques.html" style="--c:#f97316"><span class="num">215</span><span class="ctitle">DNA Analysis Techniques</span></a>
+    <a class="card" href="boom_216_pcr_components.html" style="--c:#f97316"><span class="num">216</span><span class="ctitle">PCR Components</span></a>
+    <a class="card" href="boom_217_reading_the_results.html" style="--c:#f97316"><span class="num">217</span><span class="ctitle">Reading the Results</span></a>
+    <a class="card" href="boom_218_technique_for_the_scenario.html" style="--c:#f97316"><span class="num">218</span><span class="ctitle">Choosing the Right Technique</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🩺</span>
+    <span class="section-title">Molecular Biology Techniques (3 of 3), RNA analysis</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_219_rna_techniques.html" style="--c:#3b82f6"><span class="num">219</span><span class="ctitle">RNA Analysis Techniques</span></a>
+    <a class="card" href="boom_220_qpcr_essentials.html" style="--c:#3b82f6"><span class="num">220</span><span class="ctitle">qPCR Essentials</span></a>
+    <a class="card" href="boom_221_transcriptomics.html" style="--c:#3b82f6"><span class="num">221</span><span class="ctitle">RNA-Seq &amp; Transcriptomics</span></a>
+    <a class="card" href="boom_222_qpcr_vs_rnaseq.html" style="--c:#3b82f6"><span class="num">222</span><span class="ctitle">RT-qPCR vs RNA-Seq</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🫘</span>
+    <span class="section-title">Prenatal Genetic Testing &amp; Neonatal Screening</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_223_screening_tests_timeline.html" style="--c:#f59e0b"><span class="num">223</span><span class="ctitle">Prenatal Screening Tests</span></a>
+    <a class="card" href="boom_224_quad_marker_patterns.html" style="--c:#f59e0b"><span class="num">224</span><span class="ctitle">Quad Screen Marker Patterns</span></a>
+    <a class="card" href="boom_225_diagnostic_and_sampling.html" style="--c:#f59e0b"><span class="num">225</span><span class="ctitle">Diagnostic &amp; Preimplantation Testing</span></a>
+    <a class="card" href="boom_226_chromosomal_conditions.html" style="--c:#f59e0b"><span class="num">226</span><span class="ctitle">Aneuploidies Detected in Screening</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">💧</span>
+    <span class="section-title">From Bench to Bedside: The Role of Animal Models in Novel Therapeutics</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_227_gene_manip_strategies.html" style="--c:#10b981"><span class="num">227</span><span class="ctitle">Gene Manipulation Strategies</span></a>
+    <a class="card" href="boom_228_rnai_machinery.html" style="--c:#10b981"><span class="num">228</span><span class="ctitle">RNAi Molecules and Machinery</span></a>
+    <a class="card" href="boom_229_crispr_components.html" style="--c:#10b981"><span class="num">229</span><span class="ctitle">CRISPR-Cas9 Components</span></a>
+    <a class="card" href="boom_230_landmark_examples.html" style="--c:#10b981"><span class="num">230</span><span class="ctitle">Landmark Examples and Applications</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🧬</span>
+    <span class="section-title">Multifactorial Disorders</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_231_core_concepts.html" style="--c:#8b5cf6"><span class="num">231</span><span class="ctitle">Core Concepts of Multifactorial Disease</span></a>
+    <a class="card" href="boom_232_study_methods.html" style="--c:#8b5cf6"><span class="num">232</span><span class="ctitle">Studying Complex Traits</span></a>
+    <a class="card" href="boom_233_genes_and_clinical.html" style="--c:#8b5cf6"><span class="num">233</span><span class="ctitle">Genes, Variants, and Clinical Relevance</span></a>
+    <a class="card" href="boom_234_factors_and_mechanisms.html" style="--c:#8b5cf6"><span class="num">234</span><span class="ctitle">Factors Shaping the Phenotype</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">⚗️</span>
+    <span class="section-title">Population Genetics</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_235_pop_gen_forces.html" style="--c:#06b6d4"><span class="num">235</span><span class="ctitle">Forces That Shape Populations</span></a>
+    <a class="card" href="boom_236_hardy_weinberg_terms.html" style="--c:#06b6d4"><span class="num">236</span><span class="ctitle">Decoding the Hardy-Weinberg Equation</span></a>
+    <a class="card" href="boom_237_ancestry_diseases.html" style="--c:#06b6d4"><span class="num">237</span><span class="ctitle">Ancestry and Autosomal Recessive Disease</span></a>
+    <a class="card" href="boom_238_genotype_terms.html" style="--c:#06b6d4"><span class="num">238</span><span class="ctitle">Alleles, Zygosity, and Phenotype</span></a>
+  </div>
+</section>
+
+<section class="section" data-section>
+  <div class="section-head">
+    <span class="section-icon">🔬</span>
+    <span class="section-title">Pharmacogenetics: An Introduction</span>
+    <span class="section-badge">4 games</span>
+  </div>
+  <div class="cards">
+    <a class="card" href="boom_239_metabolizer_phenotypes.html" style="--c:#ec4899"><span class="num">239</span><span class="ctitle">Metabolizer Phenotypes and Dosing</span></a>
+    <a class="card" href="boom_240_gpcr_receptor_variants.html" style="--c:#ec4899"><span class="num">240</span><span class="ctitle">GPCR Receptor Variants and Drug Response</span></a>
+    <a class="card" href="boom_241_metabolizing_enzymes.html" style="--c:#ec4899"><span class="num">241</span><span class="ctitle">Phase I and Phase II Metabolizing Enzymes</span></a>
+    <a class="card" href="boom_242_snp_variant_classification.html" style="--c:#ec4899"><span class="num">242</span><span class="ctitle">SNP and Variant Classification</span></a>
+  </div>
+</section>
+
+</main>
+
+<script>
+document.getElementById('search').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  let anyVisible = false;
+  document.querySelectorAll('.section').forEach(sec => {
+    let secVisible = false;
+    sec.querySelectorAll('.card').forEach(c => {
+      const match = c.textContent.toLowerCase().includes(q);
+      c.style.display = match ? '' : 'none';
+      if (match) secVisible = true;
+    });
+    sec.style.display = secVisible ? '' : 'none';
+    if (secVisible) anyVisible = true;
+  });
+  document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
+});
+</script>
+</body>
+</html>
