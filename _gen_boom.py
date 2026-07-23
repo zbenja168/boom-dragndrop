@@ -290,6 +290,7 @@ def make_html(game, prev_file, next_file, idx_in_palette):
             .drop-label {{ text-align: center; }}
         }}
     </style>
+<script defer src="https://activetransport.app/static/tool-track.js"></script>
 </head>
 <body>
 {index_link}
@@ -700,6 +701,7 @@ def main():
   .num{{flex-shrink:0;background:var(--c,{RENAL_IDENTITY});color:#fff;border-radius:5px;padding:2px 5px;font-size:.6rem;font-weight:800;margin-top:1px;opacity:.9;letter-spacing:.3px;}}
   .ctitle{{font-size:.75rem;line-height:1.45;color:var(--text);}}
 </style>
+<script defer src="https://activetransport.app/static/tool-track.js"></script>
 </head>
 <body>
 
