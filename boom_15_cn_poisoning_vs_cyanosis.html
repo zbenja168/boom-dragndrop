@@ -159,29 +159,23 @@
         </div>
     </div>
     <script>
-        const categoryKeys = ["cyanide_poisoning", "cyanosis"];
-        const categoryLabels = {"cyanide_poisoning": "Cyanide Poisoning", "cyanosis": "Cyanosis"};
+        const categoryKeys = ["skin_color", "underlying_mechanism", "state_of_hemoglobin_at_the_tissue", "representative_cause", "preferred_management"];
+        const categoryLabels = {"skin_color": "Skin color", "underlying_mechanism": "Underlying mechanism", "state_of_hemoglobin_at_the_tissue": "State of hemoglobin at the tissue", "representative_cause": "Representative cause", "preferred_management": "Preferred management"};
 
         const gameData = {
-            "Skin color": {
-                "cyanide_poisoning": "Cherry-red skin discoloration",
-                "cyanosis": "Blue-tinted skin, most visible in lips, fingers, toes, nailbeds"
+            "Cyanide Poisoning": {
+                "skin_color": "Cherry-red skin discoloration",
+                "underlying_mechanism": "Complex IV inhibition prevents tissue oxygen consumption",
+                "state_of_hemoglobin_at_the_tissue": "Remains oxygenated because O2 is not extracted",
+                "representative_cause": "Fire smoke, nitroprusside, or cyanogenic foods like cassava",
+                "preferred_management": "Hydroxocobalamin (a form of vitamin B12)"
             },
-            "Underlying mechanism": {
-                "cyanide_poisoning": "Complex IV inhibition prevents tissue oxygen consumption",
-                "cyanosis": "Inadequate delivery of oxygenated hemoglobin to tissues"
-            },
-            "State of hemoglobin at the tissue": {
-                "cyanide_poisoning": "Remains oxygenated because O2 is not extracted",
-                "cyanosis": "Deoxygenated hemoglobin predominates"
-            },
-            "Representative cause": {
-                "cyanide_poisoning": "Fire smoke, nitroprusside, or cyanogenic foods like cassava",
-                "cyanosis": "Congenital heart defect or reduced hemoglobin synthesis"
-            },
-            "Preferred management": {
-                "cyanide_poisoning": "Hydroxocobalamin (a form of vitamin B12)",
-                "cyanosis": "Correct the underlying perfusion or hemoglobin problem"
+            "Cyanosis": {
+                "skin_color": "Blue-tinted skin, most visible in lips, fingers, toes, nailbeds",
+                "underlying_mechanism": "Inadequate delivery of oxygenated hemoglobin to tissues",
+                "state_of_hemoglobin_at_the_tissue": "Deoxygenated hemoglobin predominates",
+                "representative_cause": "Congenital heart defect or reduced hemoglobin synthesis",
+                "preferred_management": "Correct the underlying perfusion or hemoglobin problem"
             }
         };
 
