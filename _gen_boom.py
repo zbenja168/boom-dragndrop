@@ -714,7 +714,7 @@ def main():
     <span class="pill"><b>{total_sections}</b> sections</span>
   </div>
   <div class="search-wrap">
-    <input type="text" id="search" placeholder="Search by topic or number\\u2026" autocomplete="off">
+    <input type="text" id="search" placeholder="Search by topic or number&hellip;" autocomplete="off">
     <span class="search-ico">&#x2315;</span>
   </div>
 </header>
